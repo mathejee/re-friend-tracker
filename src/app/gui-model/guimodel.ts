@@ -1,4 +1,4 @@
-export class GuiModel {
+﻿export class GuiModel {
 
     /* HINWEIS: Texte sind in der Datei ../example-translation-service.ts definiert.
     Erscheinen Texte in {}, so kann die Übersetzung in example-translation-service.ts definiert werden
@@ -9,7 +9,7 @@ export class GuiModel {
 
     private _guiModel = {
         "application": {
-            "title": "Requirements Engineering Friend Tracker",
+            "title": "Jeevans Friend Tracker",
             "formList": [
                 {
                     "id": "FriendForm",
@@ -29,11 +29,25 @@ export class GuiModel {
                             "width": 1,
                             "required": true
                         },
+			{   "id": "nickName",
+                            "type": "text",
+                            "name": "NickName",
+                            "width": 2,
+                            "required": true
+			},
                         {
                             "id":   "location",
                             "type": "autocomplete",
                             "name": "Location",
                             "data": [ "Winterthur", "Zürich" ],
+                            "form": "GroupForm",
+                            "width": 2
+                        },
+			{
+                            "id":   "group",
+                            "type": "autocomplete",
+                            "name": "Group",
+                            "data": [ "Study", "Family", "School" ],
                             "form": "GroupForm",
                             "width": 2
                         },
@@ -89,6 +103,31 @@ export class GuiModel {
                             "name": "Ok"
                         }
                     ]
+                },
+		{
+                    "id": "GroupForm",
+                    "title": "Group",
+                    "formFieldList": [
+                        {
+                            "id": "name",
+                            "type": "text",
+                            "name": "GroupName",
+                            "width": 2,
+                            "required": true
+                        },
+                        {
+                            "type": "deleteButton",
+                            "name": "Delete"
+                        },
+                        {
+                            "type": "cancelButton",
+                            "name": "Cancel"
+                        },
+                        {
+                            "type": "okButton",
+                            "name": "Ok"
+                        }
+                    ]
                 }
             ],
             "pageList": [
@@ -109,6 +148,13 @@ export class GuiModel {
                             "icon": "fa-cubes",
                             "color": "yellow",
                             "page": "locationspage",
+                        },
+			{
+                            "type": "button",
+                            "name": "Groups",
+                            "icon": "fa-weixin",
+                            "color": "wisteria",
+                            "page": "groupspage",
                         },
                     ]
                 },
@@ -165,7 +211,34 @@ export class GuiModel {
                             }
                         },
                     ]
-                }
+                },
+		{
+                    "id": "groupspage",
+                    "elementList": [
+                        {
+                            "type": "backbutton",
+                        },
+                        {
+                            "type": "newButton",
+                            "name": "NewGroup",
+                            "icon": "fa-weixin",
+                            "color": "green",
+                            "form": {
+                                "form": "GroupForm"
+                            }
+                        },
+			{
+                            "type": "list",
+                            "icon": "fa-weixin",
+                            "color": "wisteria",
+                            "search": true,
+                            "data": [ { name: "Study" }, { name: "Family" }, { name: "School"} ],
+                            "form": {
+                                "form": "GroupForm"
+                            }
+                        },
+		    ]
+		},
             ]
         }
     };
